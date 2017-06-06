@@ -1,0 +1,34 @@
+package:
+  name: pycudalib
+  version: {{ GIT_DESCRIBE_TAG }}
+
+source:
+  path: ..
+
+build:
+  number: {{ GIT_DESCRIBE_NUMBER|int }}
+
+requirements:
+  build:
+    - python
+    - numpy x.x
+    - numba
+    - cffi
+  run:
+    - python
+    - numpy x.x
+    - numba
+    - cudatoolkit
+    - unittest2       [py26]
+    - libgfortran     [linux32 or linux64]
+    - pycudalib_sorting 0.1.0 [win64 or linux64 or osx]
+    - cffi
+
+test:
+  requires:
+    - pytest
+    - scipy
+  imports:
+    - pycudalib
+  commands:
+    - python -m unittest -v pycudalib

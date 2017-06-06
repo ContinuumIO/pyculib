@@ -1,0 +1,2 @@
+include versioneer.py
+include pycudalib/_version.py
